@@ -1,0 +1,26 @@
+plugins {
+    id 'java-library'
+}
+
+group 'org.springframework'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api(project(":spring-context"))
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+// 引入Lombok
+// implementation 'org.projectlombok:lombok:1.18.20' 该引入方式疑似与当前Gradle版本不兼容
+//    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+//    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+// https://mvnrepository.com/artifact/org.projectlombok/lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+
+}
+
+test {
+    useJUnitPlatform()
+}
