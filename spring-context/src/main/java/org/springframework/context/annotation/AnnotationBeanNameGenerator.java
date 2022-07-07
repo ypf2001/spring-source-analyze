@@ -99,7 +99,7 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 		AnnotationMetadata amd = annotatedDef.getMetadata();
 		Set<String> types = amd.getAnnotationTypes();
 		String beanName = null;
-		for (String type : types) {
+		for (String type : types) {//配置类注解在此循环
 			AnnotationAttributes attributes = AnnotationConfigUtils.attributesFor(amd, type);
 			if (attributes != null) {
 				Set<String> metaTypes = this.metaAnnotationTypesCache.computeIfAbsent(type, key -> {
@@ -166,7 +166,7 @@ public class AnnotationBeanNameGenerator implements BeanNameGenerator {
 	protected String buildDefaultBeanName(BeanDefinition definition) {
 		String beanClassName = definition.getBeanClassName();
 		Assert.state(beanClassName != null, "No bean class name set");
-		String shortClassName = ClassUtils.getShortName(beanClassName);
+		String shortClassName = ClassUtils.getShortName(beanClassName);//名字默认为 包路径的最后一个字段 即为类名称
 		return Introspector.decapitalize(shortClassName);
 	}
 

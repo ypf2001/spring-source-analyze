@@ -323,7 +323,7 @@ public class BeanDefinitionParserDelegate {
 		if (isDefaultValue(lazyInit)) {
 			// Potentially inherited from outer <beans> sections, otherwise falling back to false.
 			lazyInit = (parentDefaults != null ? parentDefaults.getLazyInit() : FALSE_VALUE);
-		}
+		}//这个方法为状态初始化
 		defaults.setLazyInit(lazyInit);
 
 		String merge = root.getAttribute(DEFAULT_MERGE_ATTRIBUTE);

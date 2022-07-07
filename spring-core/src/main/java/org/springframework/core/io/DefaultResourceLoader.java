@@ -166,7 +166,7 @@ public class DefaultResourceLoader implements ResourceLoader {
 				return (ResourceUtils.isFileURL(url) ? new FileUrlResource(url) : new UrlResource(url));
 			}
 			catch (MalformedURLException ex) {
-				// No URL -> resolve as resource path.
+				//异常机制 资源路径解析 No URL -> resolve as resource path.
 				return getResourceByPath(location);
 			}
 		}

@@ -85,7 +85,7 @@ public class AnnotatedBeanDefinitionReader {
 		Assert.notNull(environment, "Environment must not be null");
 		this.registry = registry;
 		this.conditionEvaluator = new ConditionEvaluator(registry, environment, null);
-		AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);
+		AnnotationConfigUtils.registerAnnotationConfigProcessors(this.registry);//注册注解的后置处理器
 	}
 
 
@@ -132,7 +132,7 @@ public class AnnotatedBeanDefinitionReader {
 	 * @param componentClasses one or more component classes,
 	 * e.g. {@link Configuration @Configuration} classes
 	 */
-	public void register(Class<?>... componentClasses) {
+	public void register(Class<?>... componentClasses) {//循环遍历自定义config
 		for (Class<?> componentClass : componentClasses) {
 			registerBean(componentClass);
 		}
@@ -255,10 +255,10 @@ public class AnnotatedBeanDefinitionReader {
 			return;
 		}
 
-		abd.setInstanceSupplier(supplier);
+		abd.setInstanceSupplier(supplier);//是否有自己的实例构造方法
 		ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);
 		abd.setScope(scopeMetadata.getScopeName());
-		String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
+		String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));//生成名字默认为类目
 
 		AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);
 		if (qualifiers != null) {
@@ -279,10 +279,10 @@ public class AnnotatedBeanDefinitionReader {
 				customizer.customize(abd);
 			}
 		}
-
+//使用 BeanDefinitionHolder 封装 装饰器模式
 		BeanDefinitionHolder definitionHolder = new BeanDefinitionHolder(abd, beanName);
 		definitionHolder = AnnotationConfigUtils.applyScopedProxyMode(scopeMetadata, definitionHolder, this.registry);
-		BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, this.registry);
+		BeanDefinitionReaderUtils.registerBeanDefinition(definitionHolder, this.registry);//检验是否注册
 	}
 
 

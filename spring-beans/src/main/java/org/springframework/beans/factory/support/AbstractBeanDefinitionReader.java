@@ -201,7 +201,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	 * that have been resolved during the loading process. May be {@code null}
 	 * to indicate that the caller is not interested in those Resource objects.
 	 * @return the number of bean definitions found
-	 * @throws BeanDefinitionStoreException in case of loading or parsing errors
+	 * @throws BeanDefinitionStoreException in case 00of loading or parsing errors
 	 * @see #getResourceLoader()
 	 * @see #loadBeanDefinitions(org.springframework.core.io.Resource)
 	 * @see #loadBeanDefinitions(org.springframework.core.io.Resource[])
@@ -215,7 +215,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 
 		if (resourceLoader instanceof ResourcePatternResolver) {
 			// Resource pattern matching available.
-			try {
+			try {//通过位置得到xml里面的类容
 				Resource[] resources = ((ResourcePatternResolver) resourceLoader).getResources(location);
 				int count = loadBeanDefinitions(resources);
 				if (actualResources != null) {
@@ -250,7 +250,7 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 		Assert.notNull(locations, "Location array must not be null");
 		int count = 0;
 		for (String location : locations) {
-			count += loadBeanDefinitions(location);
+			count += loadBeanDefinitions(location);//
 		}
 		return count;
 	}

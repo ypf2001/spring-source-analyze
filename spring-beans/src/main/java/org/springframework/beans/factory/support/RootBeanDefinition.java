@@ -288,7 +288,7 @@ public class RootBeanDefinition extends AbstractBeanDefinition {
 	}
 
 	/**
-	 * Return the target definition that is being decorated by this bean definition, if any.
+	 * Return the target definition that is being decorated by thi.s bean definition, if any.
 	 */
 	@Nullable
 	public BeanDefinitionHolder getDecoratedDefinition() {

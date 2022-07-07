@@ -123,10 +123,10 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 			destroyBeans();
 			closeBeanFactory();
 		}
-		try {
+		try {//再次创建了工厂
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			beanFactory.setSerializationId(getId());
-			customizeBeanFactory(beanFactory);
+			customizeBeanFactory(beanFactory);//加入classPathXmlApplicationContext
 			loadBeanDefinitions(beanFactory);
 			this.beanFactory = beanFactory;
 		}

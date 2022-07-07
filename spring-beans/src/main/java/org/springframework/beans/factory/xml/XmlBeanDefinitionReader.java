@@ -322,7 +322,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		if (logger.isTraceEnabled()) {
 			logger.trace("Loading XML bean definitions from " + encodedResource);
 		}
-
+//threadLocal 进行保存
 		Set<EncodedResource> currentResources = this.resourcesCurrentlyBeingLoaded.get();
 
 		if (!currentResources.add(encodedResource)) {
@@ -343,7 +343,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 		}
 		finally {
 			currentResources.remove(encodedResource);
-			if (currentResources.isEmpty()) {
+			if (currentResources.isEmpty()) {//移除正在加载的resource
 				this.resourcesCurrentlyBeingLoaded.remove();
 			}
 		}

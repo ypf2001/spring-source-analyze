@@ -247,7 +247,7 @@ public abstract class AbstractNestablePropertyAccessor extends AbstractPropertyA
 		nestedPa.setPropertyValue(tokens, new PropertyValue(propertyName, value));
 	}
 
-	@Override
+	@Override//利用反射进行赋值	PropertyValue
 	public void setPropertyValue(PropertyValue pv) throws BeansException {
 		PropertyTokenHolder tokens = (PropertyTokenHolder) pv.resolvedTokens;
 		if (tokens == null) {
